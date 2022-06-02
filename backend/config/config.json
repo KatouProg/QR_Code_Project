@@ -1,0 +1,23 @@
+{
+    "development": {
+      "username": "root",
+      "password": "Janjakus30",
+      "database": "database_development_QrCode",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "root",
+      "password": "Janjakus30",
+      "database": "database_test_QrCode",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "root",
+      "password": "Janjakus30",
+      "database": "database_production_QrCode",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    }
+  }
