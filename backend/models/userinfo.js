@@ -1,7 +1,9 @@
 'use strict';
-const { Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class userInfo extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,17 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.User.hasMany(models.Publication,{ onDelete: 'CASCADE', hooks: true });
-      models.User.hasMany(models.Comment, { onDelete: 'CASCADE', hooks: true });
-      models.User.hasMany(models.Likes, { onDelete: 'CASCADE', hooks: true });
     }
-  };
-  User.init({
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-     },
+  }
+  userInfo.init({
     personFirstname: DataTypes.STRING,
     personLastname: DataTypes.STRING,
     personAdress: DataTypes.STRING,
@@ -29,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     personAge: DataTypes.INTEGER,
     userFirstname: DataTypes.STRING,
     userLastname: DataTypes.STRING,
-    userAdress: DataTypes.STRING,
     userZipcode: DataTypes.STRING,
     userCity: DataTypes.STRING,
     userPhone1: DataTypes.STRING,
@@ -38,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     isAdmin: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'userInfo',
   });
-  return User;
+  return userInfo;
 };
