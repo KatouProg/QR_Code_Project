@@ -44,6 +44,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      userAdress: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       userZipcode: {
         allowNull: false,
         type: Sequelize.STRING
@@ -61,6 +65,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       userMail: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      password: {
         allowNull: false,
         type: Sequelize.STRING
       },

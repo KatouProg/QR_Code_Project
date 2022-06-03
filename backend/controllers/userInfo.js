@@ -60,12 +60,20 @@ module.exports = {
       },
       function(bcryptedPassword, done) {
         models.User.create({
-          email: req.body.email,
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          bio: req.body.bio,
-          imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
-          bgUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
+          personFirstname: req.body.personFirstname,
+          personLastname: req.body.personLastname,
+          personAdress: req.body.personAdress,
+          personZipcode: req.body.personZipcode,
+          personCity: req.body.personCity,
+          personProblem: req.body.personProblem,
+          personAge: req.body.personAge,
+          userFirstname: req.body.userFirstname,
+          userLastname: req.body.userLastname,
+          userAdress: req.body.personAdress,
+          userZipcode: req.body.userZipcode,
+          userCity: req.body.userCity,
+          userPhone1: req.body.userPhone1,
+          userMail: req.body.userMail,
           password: bcryptedPassword,
           isAdmin: req.body.isAdmin,
         })
@@ -137,17 +145,7 @@ module.exports = {
       }
     });
   },
-  getAllUsers: function (req, res) {
-    models.User.findAll()
-      .then((users) => {
-        res.status(200).json(users);
-      })
-      .catch((error) => {
-        res.status(500).json({
-          message: "Something went wrong",
-        });
-      });
-  },
+  
   getUserProfile: function(req, res) {
     const userId = req.params.id;
 
@@ -234,30 +232,6 @@ module.exports = {
       })
   },
 
-
-  editUserOverlay: function (req, res) {
-    const token = req.headers.authorization.split(' ')[1]
-    const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
-    const userId = userFound.id
-
-    const updatedProfile = {
-      bgUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-    };
-
-    models.User.update(updatedProfile, { where: { id: userId } })
-      .then((result) => {
-        res.status(200).json({
-          message: "Overlay updated successfully",
-          post: updatedProfile,
-        });
-      })
-      .catch((error) => {
-        res.status(200).json({
-          message: "Something went wrong",
-          error: result,
-        });
-      });
-  },
 
 
   //=========================== A REVOIR ============================//
