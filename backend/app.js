@@ -1,11 +1,10 @@
 //imports
 const express            = require('express');
 const app                = express();
-const path               = require('path')
 const cors               = require('cors')
 
 //routes
-const userInfoRoutes = require('./routes/userInfo')
+const usersRoutes = require('./routes/users')
 
 app.use(cors());
 
@@ -19,7 +18,7 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use('/api/userInfo', userInfoRoutes)
+app.use('/api/users', usersRoutes)
 
 
 module.exports = app;
