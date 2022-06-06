@@ -60,19 +60,19 @@ module.exports = {
       },
       function(bcryptedPassword, done) {
         models.User.create({
-          /*personFirstname: req.body.personFirstname,
+          personFirstname: req.body.personFirstname,
           personLastname: req.body.personLastname,
           personAdress: req.body.personAdress,
           personZipcode: req.body.personZipcode,
           personCity: req.body.personCity,
           personProblem: req.body.personProblem,
-          personAge: req.body.personAge,*/
+          personAge: req.body.personAge,
           firstname: req.body.firstname,
           lastname: req.body.lastname,
-          /*address: req.body.address,
+          address: req.body.address,
           zipcode: req.body.zipcode,
           city: req.body.city,
-          phone1: req.body.phone1,*/
+          phone1: req.body.phone1,
           email: req.body.email,
           password: bcryptedPassword,
           isAdmin: req.body.isAdmin,
