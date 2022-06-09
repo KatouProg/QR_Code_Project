@@ -60,19 +60,9 @@ module.exports = {
       },
       function(bcryptedPassword, done) {
         models.User.create({
-          personFirstname: req.body.personFirstname,
-          personLastname: req.body.personLastname,
-          personAdress: req.body.personAdress,
-          personZipcode: req.body.personZipcode,
-          personCity: req.body.personCity,
-          personProblem: req.body.personProblem,
-          personAge: req.body.personAge,
+          
           firstname: req.body.firstname,
           lastname: req.body.lastname,
-          address: req.body.address,
-          zipcode: req.body.zipcode,
-          city: req.body.city,
-          phone1: req.body.phone1,
           email: req.body.email,
           password: bcryptedPassword,
           isAdmin: req.body.isAdmin,
@@ -153,7 +143,7 @@ module.exports = {
       return res.status(400).json({ 'error': 'wrong token' });
 
     models.User.findOne({
-      attributes: [ 'id', 'email', 'firstname', 'lastname', 'bio', 'imageUrl', 'bgUrl', 'isAdmin' ],
+      attributes: [ 'id', 'email', 'firstname', 'lastname','isAdmin' ],
       where: { id: userId }
     })
     .then((userFound) => {
@@ -173,18 +163,12 @@ module.exports = {
     const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = userFound.id
 
-    const updatedProfilePic = {
-      imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
-    };
-    
     // Params
-    var bio= req.body.bio;
-
-    
+   
     asyncLib.waterfall([
       function(done) {
         models.User.findOne({
-          attributes: ['id', 'bio','imageUrl'],
+          attributes: ['id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2', 'isAdmin' ],
           where: { id: userId }
         }).then(function (userFound) {
           done(null, userFound);
@@ -196,8 +180,20 @@ module.exports = {
       function(userFound, done) {
         if(userFound) {
           userFound.update({
-            bio: (bio ? bio : userFound.bio),
-            imageUrl: (updatedProfilePic.imageUrl ? updatedProfilePic.imageUrl : userFound.imageUrl),
+            firstname: (firstname ? firstname : userFound.firstname),
+            lastname: (lastname ? lastname : userFound.lastname),
+            personFirstname: (personFirstname ? personFirstname : userFound.personFirstname),
+            personLastname: (personLastname ? personLastname : userFound.personLastname),
+            personAdress: (personAdress ? personAdress : userFound.personAdress),
+            personZipcode: (personZipcode ? personZipcode : userFound.personZipcode),
+            personCity: (personCity ? personCity : userFound.personCity),
+            personProblem: (personProblem ? personProblem : userFound.personProblem),
+            personAge: (personAge ? personAge : userFound.personAge),
+            address: (address ? address : userFound.address),
+            zipcode: (zipcode ? zipcode : userFound.zipcode),
+            city: (city ? city : userFound.city),
+            phone1: (phone1 ? phone1 : userFound.phone1),
+            phone2: (phone2 ? phone2 : userFound.phone2),
           }).then(function() {
             done(userFound);
           }).catch(function(err) {
@@ -206,24 +202,7 @@ module.exports = {
         } else {
           res.status(404).json({ 'error': 'user not found' });
         }
-      },
-      function (done){
-        models.User.update(updatedProfilePic, { where: { id: userId } })
-      .then((result) => {
-        done(null, userFound);
-        res.status(200).json({
-          message: "Profile pic updated successfully",
-          post: updatedProfilePic,
-        });
-      })
-      .catch((error) => {
-        res.status(401).json({
-          message: "Something went wrong",
-          error: result,
-        });
-      });
-    }
-    ], function(userFound) {
+      }], function(userFound) {
       if (userFound) {
         return res.status(201).json(userFound);
       } else {

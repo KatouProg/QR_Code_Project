@@ -9,31 +9,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       personFirstname: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       personLastname: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       personAdress: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       personZipcode: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       personCity: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       personProblem: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       personAge: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       firstname: {
@@ -45,19 +45,19 @@ module.exports = {
         type: Sequelize.STRING
       },
       address: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       zipcode: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       city: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       phone1: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       phone2: {
