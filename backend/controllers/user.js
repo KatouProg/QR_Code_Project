@@ -163,7 +163,7 @@ module.exports = {
     const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = userFound.id
 
-    
+
     // Params
 
     var firstname= req.body.firstname;
@@ -255,7 +255,7 @@ module.exports = {
         
       if (currentUser.isAdmin == false) {
         console.log(currentUser);
-        res.status(401).json({ message: "not allowed" });
+        res.status(401).json({ message: "***not allowed***" });
         return;
       }
       
