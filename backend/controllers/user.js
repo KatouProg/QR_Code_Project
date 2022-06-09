@@ -163,12 +163,29 @@ module.exports = {
     const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = userFound.id
 
+    
     // Params
-   
+
+    var firstname= req.body.firstname;
+    var lastname= req.body.lastname;
+    var personFirstname= req.body.personFirstname;
+    var personLastname= req.body.personLastname;
+    var personAdress= req.body.personAdress;
+    var personZipcode= req.body.bpersonZipcodeio;
+    var personCity= req.body.personCity;
+    var personProblem= req.body.personProblem;
+    var personAge= req.body.personAge;
+    var address= req.body.address;
+    var zipcode= req.body.zipcode;
+    var city= req.body.city;
+    var phone1= req.body.phone1;
+    var phone2= req.body.phone2;
+
+
     asyncLib.waterfall([
       function(done) {
         models.User.findOne({
-          attributes: ['id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2', 'isAdmin' ],
+          attributes: ['id', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
           where: { id: userId }
         }).then(function (userFound) {
           done(null, userFound);
