@@ -168,7 +168,7 @@ module.exports = {
     asyncLib.waterfall([
       function(done) {
         models.User.findOne({
-          attributes: ['id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2', 'isAdmin' ],
+          attributes: ['id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
           where: { id: userId }
         }).then(function (userFound) {
           done(null, userFound);
