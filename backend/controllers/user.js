@@ -161,20 +161,37 @@ module.exports = {
   editUserProfile: function(req, res) {
     const token = req.headers.authorization.split(' ')[1]
     const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
-    const userId = userFound.id
+    const userId = userFound.id;
 
     // Params
+    var firstname= req.body.firstname;
+    var lastname= req.body.lastname;
+    var personFirstname= req.body.personFirstname;
+    var personLastname= req.body.personLastname;
+    var personAdress= req.body.personAdress;
+    var personZipcode= req.body.personZipcode;
+    var personCity= req.body.personCity;
+    var personProblem= req.body.personProblem;
+    var personAge= req.body.personAge;
+    var address= req.body.address;
+    var zipcode= req.body.zipcode;
+    var city= req.body.city;
+    var phone1= req.body.phone1;
+    var phone2= req.body.phone2;
+    var email= req.body.email;
+
+
    
     asyncLib.waterfall([
       function(done) {
         models.User.findOne({
-          attributes: ['id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
+          attributes: ['id', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
           where: { id: userId }
         }).then(function (userFound) {
           done(null, userFound);
         })
         .catch(function(err) {
-          return res.status(500).json({ 'error': 'unable to verify user' });
+          return res.status(500).json({ 'error': '***unable to verify user***' });
         });
       },
       function(userFound, done) {
@@ -194,6 +211,7 @@ module.exports = {
             city: (city ? city : userFound.city),
             phone1: (phone1 ? phone1 : userFound.phone1),
             phone2: (phone2 ? phone2 : userFound.phone2),
+            email: (email ? email : userFound.email),
           }).then(function() {
             done(userFound);
           }).catch(function(err) {
