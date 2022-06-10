@@ -36,6 +36,9 @@ module.exports = {
       return res.status(400).json({error:"password invalid (must length 4 - 12 and include 1 number at least)"});
     }
     
+
+    //=========================== CREATE ============================//
+
     asyncLib.waterfall([
       function(done) {
         models.User.findOne({
@@ -86,6 +89,10 @@ module.exports = {
       }
     });
   },
+
+
+  //=======================================================//
+
   login: function(req, res) {
     
     // Params
@@ -136,6 +143,9 @@ module.exports = {
     });
   },
   
+
+  //=========================== READ ============================//
+
   getUserProfile: function(req, res) {
     const token = req.headers.authorization.split(' ')[1]
     const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
@@ -159,6 +169,10 @@ module.exports = {
       res.status(500).json({ 'error': 'cannot fetch user' });
     });
   },
+
+
+
+  //=========================== UPDATE ============================//
 
   editUserProfile: function(req, res) {
     const token = req.headers.authorization.split(' ')[1]
@@ -233,8 +247,9 @@ module.exports = {
 
 
 
-  //=========================== A REVOIR ============================//
+  //=========================== DELETE ============================//
 
+  
   deleteAccount: async function (req, res) {
     try {
       // Read
