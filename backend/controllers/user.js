@@ -163,10 +163,6 @@ module.exports = {
     const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = userFound.id
 
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of d331c85 (BACKEND - editUserProfile -->ok)
     // Params
    
     asyncLib.waterfall([
