@@ -137,13 +137,15 @@ module.exports = {
   },
   
   getUserProfile: function(req, res) {
-    const userId = req.params.id;
+    const token = req.headers.authorization.split(' ')[1]
+    const userFound = jwt.verify(token, process.env.SECRET_TOKEN);
+    const userId = userFound.id;
 
     if (userId < 0)
       return res.status(400).json({ 'error': 'wrong token' });
 
     models.User.findOne({
-      attributes: [ 'id', 'email', 'firstname', 'lastname','isAdmin' ],
+      attributes: [ 'id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
       where: { id: userId }
     })
     .then((userFound) => {
@@ -185,7 +187,7 @@ module.exports = {
     asyncLib.waterfall([
       function(done) {
         models.User.findOne({
-          attributes: ['id', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
+          attributes: ['id', 'email', 'firstname', 'lastname', 'personFirstname', 'personLastname', 'personAdress', 'personZipcode', 'personCity', 'personProblem', 'personAge', 'address', 'zipcode', 'city', 'phone1', 'phone2'],
           where: { id: userId }
         }).then(function (userFound) {
           done(null, userFound);
