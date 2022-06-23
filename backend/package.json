@@ -15,5 +15,23 @@
     "path": "^0.12.7",
     "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Qr_code_project_Backend",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KatouProg/QR_Code_Project.git"
+  },
+  "author": "KatouProg.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatouProg/QR_Code_Project/issues"
+  },
+  "homepage": "https://github.com/KatouProg/QR_Code_Project#readme"
 }
