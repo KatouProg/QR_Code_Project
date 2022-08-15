@@ -1,4 +1,24 @@
+$color1: #01261C;
+$color2: #ACF2E5;
+$color3: #4ABF2A;
+$color4: #98D936;
+$color5: #F2ECE4;
+
 .header-container {
-    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 7rem;
+
+    svg {
+        font-size: 6rem;
+        color: $color1;
+    }
+
+    h1{
+        font-size: 3rem;
+        margin-left: 4rem;
+        color: $color1;
+    }
 }
 
