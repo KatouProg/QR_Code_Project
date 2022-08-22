@@ -4,8 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   return <div className="header-container">
-    <FontAwesomeIcon icon= {faHandHoldingHand} />
-    <h1>QrCode - Helper</h1>
+    <a href="/">
+      <FontAwesomeIcon icon= {faHandHoldingHand}  />
+    </a>
+    <a href="/">
+      <h1>QrCode - Helper</h1>
+    </a>
   </div>;
 };
 

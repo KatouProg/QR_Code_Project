@@ -17,8 +17,13 @@ $color5: #F2ECE4;
 
     h1{
         font-size: 3rem;
+        font-weight: 600;
         margin-left: 4rem;
         color: $color1;
+    }
+
+    a {
+        text-decoration: none;
     }
 }
 
