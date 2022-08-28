@@ -245,7 +245,7 @@ const Register = () => {
                         Already registered?<br />
                         <span className="line">
                             { Login }
-                            <a href="#">Sign In</a>
+                            <a href="/login">Sign In</a>
                         </span>
                     </p>
                 </section>
